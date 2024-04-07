@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body onload="setFocusName()">
+<div class="container">
+    <h2>Student Information</h2>
+
+    <form id="createForm">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" required>
+
+        <label for="majors">Majors:</label>
+        <input type="text" id="majors" name="majors" required>
+
+        <label for="project">Project:</label>
+        <input type="text" id="project" name="project" required>
+
+        <label for="grade">Grade:</label>
+        <input type="number" min="0" max="100" step="0.01" value="" name="grade" id="grade">
+
+        <button type="button" onclick="submitStudents()">Submit</button>
+        <button type="button" onclick="addStudent()">Add</button>
+    </form>
+</div>
+<div id="message"></div>
+</body>
+<script>
+var students = [];
+function addStudent() {
+    var ID = document.getElementById("id").value;
+    var Name = document.getElementById("name").value;
+    var Majors = document.getElementById("majors").value;
+    var Project = document.getElementById("project").value;
+    var Grade = document.getElementById("grade").value;
+    var student = { ID: ID, Name: Name, Majors:Majors, Project:Project, Grade:Grade };
+    students.push(student);
+    outputMessage("The student (" + ID + ", " + Name + ", " + Majors +", " + Project +", " +Grade +") added", "red");
+}
+
+
+function submitStudents() {
+var body = JSON.stringify(students);
+    fetch('/create', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(students)
+    })
+
+    .then(response => response.json())
+    .then(data => {
+        console.log('Response from server:', data);
+        alert(data.message);
+        resetForm();
+    })
+    .catch(err => {
+    console.error('Error:', err);
+    });
+}
+
+function outputMessage(message, color) {
+    var messageElement = document.getElementById('message');
+    messageElement.textContent = message;
+    messageElement.style.color = color;
+}
+
+function resetForm() {
+  document.getElementById('createForm').reset();
+  document.getElementById('message').textContent = '';
+  setFocusName();
+  students = [];
+}
+
+function setFocusName() {
+  document.getElementById('name').focus();
+}
+</script>
+</html>

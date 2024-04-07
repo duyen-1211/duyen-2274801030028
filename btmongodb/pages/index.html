@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ Sinh Viên</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px; /* Giới hạn chiều rộng và tự động điều chỉnh theo kích thước màn hình */
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-radius: 5px; /* Thêm đường viền bo tròn */
+        }
+        h1 {
+            font-size: 24px; /* Điều chỉnh kích thước tiêu đề */
+            text-align: center; /* Căn giữa tiêu đề */
+            margin-bottom: 20px; /* Thêm khoảng cách dưới tiêu đề */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            display: block; /* Khiến liên kết hiển thị dạng khối, dễ nhấn hơn */
+            text-decoration: none;
+            color: #008CBA;
+            padding: 10px; /* Thêm đệm cho liên kết */
+            border: 1px solid #ddd; /* Thêm viền cho liên kết */
+            border-radius: 3px; /* Bo tròn viền */
+            transition: background-color 0.3s; /* Thêm hiệu ứng khi rê chuột */
+        }
+        a:hover {
+            background-color: #f0f0f0; /* Màu nền khi rê chuột */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trang Chủ Sinh Viên</h1>
+        <ul>
+            <li><a href="/updatestudent">Cập Nhật Thông Tin Sinh Viên</a></li>
+            <li><a href="/delete">Xóa Sinh Viên</a></li>
+            <li><a href="/create">Tạo Sinh Viên</a></li>
+            <li><a href="/Show">Xem Chi Tiết Sinh Viên</a></li>
+            <li><a href="/search">Tìm Kiếm Sinh Viên</a></li>
+        </ul>
+    </div>
+</body>
+</html>
